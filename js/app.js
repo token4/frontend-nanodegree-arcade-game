@@ -4,10 +4,10 @@ var Enemy = function() {
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
     // Initial location of enemy
-    this.x = 1;
+    this.x = 0;
     this.y = 60;
-    //speed factor will be a number between 100 & 300
-    this.speed = Math.floor(Math.random()*(200)+100);
+    //speed factor will be a number between 75 & 275
+    this.speed = Math.floor(Math.random()*(200)+75);
 }
 
 // Update the enemy's position, required method for game
@@ -16,7 +16,14 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.x += this.speed*dt;
+    newx = this.x +=this.speed*dt
+    if ( (newx) > 500) {
+      this.x = 0;
+      this.speed = Math.floor(Math.random()*(200)+75);
+    }
+    else {
+      this.x = newx;
+    };
 
 }
 
@@ -45,7 +52,9 @@ Player.prototype.render = function() {
 
 Player.prototype.handleInput = function(key) {
 //need to fill in moves for various key presses
-
+  if (key == 'left') {
+    
+  }
 }
 
 // Now instantiate your objects.
