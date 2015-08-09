@@ -25,6 +25,7 @@ Enemy.prototype.update = function(dt) {
       this.x = newx;
     };
 
+
 }
 
 // Draw the enemy on the screen, required method for game
@@ -53,18 +54,35 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(key) {
 //need to fill in moves for various key presses
   if (key == 'left') {
-    this.x -= 100;
+    if (this.x - 100 >= 0) {
+      this.x -= 100;
+    }
   }
   else if (key == 'right') {
-    this.x += 100;
+    if (this.x + 100 < 500) {
+      this.x += 100;
+    }
   }
   else if (key == 'up') {
-    this.y -= 82;
+    if (this.y - 82 >= 71) {
+      this.y -= 82;
+    }
+    //reset when you reach the water
+    else {
+      this.reset();
+    }
   }
   else if (key == 'down') {
-    this.y += 82;
+    if (this.y + 82 <= 401) {
+      this.y += 82;
+    }
   }
 
+}
+
+Player.prototype.reset = function() {
+  this.x = 200;
+  this.y = 400;
 }
 
 // Now instantiate your objects.

@@ -1,3 +1,10 @@
 body {
     text-align: center;
+    background-color: #000F3D;
+}
+
+h1 {
+  font-family: Gill Sans Extrabold, sans-serif;
+  font-size: 40px;
+  color: #3d2e00;
 }
