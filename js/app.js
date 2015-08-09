@@ -25,7 +25,6 @@ Enemy.prototype.update = function(dt) {
       this.x = newx;
     };
 
-
 }
 
 // Draw the enemy on the screen, required method for game
@@ -44,7 +43,13 @@ var Player = function() {
 }
 
 Player.prototype.update = function(dt) {
-
+  //if there is a collision with one of the enemies, reset player
+  for (i=0; i < allEnemies.length; i++) {
+    if (Math.abs(this.x-allEnemies[i].x)<35 &&
+        Math.abs(this.y-allEnemies[i].y)<35) {
+      this.reset();
+    }
+  }
 }
 
 Player.prototype.render = function() {
