@@ -88,12 +88,17 @@ Player.prototype.handleInput = function(key) {
 Player.prototype.reset = function(status) {
   this.x = 200;
   this.y = 400;
+  //update and show number of wins
   if (status == "win") {
     winCount++;
+    document.getElementById("win").innerHTML = "Wins: " +winCount;
   }
+  //update and show number of losses
   else if (status == "loss") {
     lossCount++;
+    document.getElementById("loss").innerHTML = "Losses: " +lossCount;
   }
+  //not sure this else is even needed
   else {
     console.log("Something's weird about how the player got reset")
   }
@@ -102,7 +107,7 @@ Player.prototype.reset = function(status) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var winCount, lossCount = 0;
+var winCount = lossCount = 0;
 var allEnemies = [];
 for (i = 0; i < 3; i++) {
   allEnemies.push(new Enemy(0, 60+(85*i)));
