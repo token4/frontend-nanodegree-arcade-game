@@ -1,11 +1,11 @@
 // Enemies our player must avoid
-var Enemy = function() {
+var Enemy = function(startX, startY) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
     // Initial location of enemy
-    this.x = 0;
-    this.y = 60;
+    this.x = startX;
+    this.y = startY;
     //speed factor will be a number between 75 & 275
     this.speed = Math.floor(Math.random()*(200)+75);
 }
@@ -47,7 +47,7 @@ Player.prototype.update = function(dt) {
   for (i=0; i < allEnemies.length; i++) {
     if (Math.abs(this.x-allEnemies[i].x)<35 &&
         Math.abs(this.y-allEnemies[i].y)<35) {
-      this.reset();
+      this.reset("loss");
     }
   }
 }
@@ -74,7 +74,7 @@ Player.prototype.handleInput = function(key) {
     }
     //reset when you reach the water
     else {
-      this.reset();
+      this.reset("win");
     }
   }
   else if (key == 'down') {
@@ -85,21 +85,28 @@ Player.prototype.handleInput = function(key) {
 
 }
 
-Player.prototype.reset = function() {
+Player.prototype.reset = function(status) {
   this.x = 200;
   this.y = 400;
+  if (status == "win") {
+    winCount++;
+  }
+  else if (status == "loss") {
+    lossCount++;
+  }
+  else {
+    console.log("Something's weird about how the player got reset")
+  }
 }
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var bug1 = new Enemy;
-var bug2 = new Enemy;
-var bug3 = new Enemy;
-bug2.y += 85;
-bug3.y += 170;
+var winCount, lossCount = 0;
 var allEnemies = [];
-allEnemies.push(bug1, bug2, bug3);
+for (i = 0; i < 3; i++) {
+  allEnemies.push(new Enemy(0, 60+(85*i)));
+}
 var player = new Player;
 
 // This listens for key presses and sends the keys to your
