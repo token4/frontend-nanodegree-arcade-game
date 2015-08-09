@@ -1,3 +1,11 @@
 body {
     text-align: center;
+    background-color: #FFFFCC;
+    color: #191914;
+}
+
+h1 {
+  font-family: Gill Sans Extrabold, sans-serif;
+  font-size: 40px;
+  color: #191914;
 }
