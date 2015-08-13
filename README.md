@@ -6,6 +6,15 @@ frontend-nanodegree-arcade-game
 The Objective of the game is to guide your player up across the road and into the water.
 If you succeed, you get a win and the game resets. If you hit a bug, you get a loss and the game resets.
 
+----------HOW TO PLAY----------
+
+The player can be moved with the four direction keys:
+
+Move Left: Left Arrow
+Move Up: Up Arrow
+Move Right: Right Arrow
+Move Down: Down Arrow
+
 ----------CODE----------
 
 1) index.html: This file pulls in the various js files and image resources
