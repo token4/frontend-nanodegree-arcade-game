@@ -1,3 +1,4 @@
+"use strict";
 // Enemies our player must avoid
 var Enemy = function(startX, startY) {
     // The image/sprite for our enemies, this uses
@@ -37,13 +38,13 @@ Enemy.prototype.render = function() {
 
 var Player = function() {
     this.sprite = 'images/char-horn-girl.png';
-    this.x = 200;
+    this.x = 202;
     this.y = 400;
 };
 
 Player.prototype.update = function(dt) {
   //if there is a collision with one of the enemies, reset player
-    for (var i = 0; i < allEnemies.length; i++) {
+    for (var i = 0, len = allEnemies.length; i < len; i++) {
         if (Math.abs(this.x-allEnemies[i].x)<35 &&
             Math.abs(this.y-allEnemies[i].y)<35) {
             this.reset("loss");
@@ -68,7 +69,7 @@ Player.prototype.handleInput = function(key) {
           }
     }
     else if (key == 'up') {
-        if (this.y - 83 >= 71) {
+        if (this.y - 83 >= 68) {
             this.y -= 83;
           }
         //reset when you reach the water
@@ -85,7 +86,7 @@ Player.prototype.handleInput = function(key) {
 
 Player.prototype.reset = function(status) {
     //reset player to original location
-    this.x = 200;
+    this.x = 202;
     this.y = 400;
     //update and show number of wins
     if (status == "win") {
@@ -106,7 +107,8 @@ Player.prototype.reset = function(status) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var winCount = var lossCount = 0;
+var winCount = 0;
+var lossCount = 0;
 var allEnemies = [];
 for (var i = 0; i < 3; i++) {
     allEnemies.push(new Enemy(0, 60+(85*i)));
